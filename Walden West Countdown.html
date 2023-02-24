@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Walden West with Jean!</title>
+  <style type="text/css">
+    body {
+      background-image: url(https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGZvcmVzdHxlbnwwfHwwfHw%3D&w=1000&q=80);
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    h1 {
+      font: 50px "Bodoni 72"
+    }
+
+    .content {
+      margin: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .csvg-digit-number {
+      background: rgba(31, 111, 50, 0.82);
+      font-family: Baskerville, sans-serif;
+      font-size: 108px;
+      font-weight: 300;
+      color: #000000;
+      padding: 0 30px;
+      margin-left: 15px;
+      margin-right: 15px;
+      border-radius: 15px 15px 0px 0px;
+      transition: transform .2s;
+      text-align: center;
+    }
+
+    .label {
+      background: rgba(124, 177, 100, 0.82);
+      font: 20px Baskerville;
+      border-radius: 0px 0px 15px 15px;
+      margin-left: 15px;
+      margin-right: 15px;
+      text-align: center;
+      padding: 5px;
+    }
+
+    .horizontal_content {
+      display: flex;
+    }
+
+    .ww-title {
+      text-align: center;
+      display: block;
+      text-shadow: rgba(157, 219, 166, 0.82) 6px 6px 8px, rgba(30, 63, 14, 0.82) 2px 2px;
+    }
+
+    .csvg-digit:hover {
+      transform: scale(1.1); 
+      transition: 0.4s
+    }
+
+    .outside {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <div class="content">
+    <h1 class="ww-title" title="Walden West with Jean!">♡ WALDEN WEST WITH JEAN ♡</h1>
+    <div class="horizontal_content">
+      <div class="outside">
+        <div class="csvg-digit" id="months-holder">
+          <div id="months" class="csvg-digit-number">23</div>
+          <div id="el_w1t" class="label">months</div>
+        </div>
+      </div>
+      <div class="outside">
+        <div class="csvg-digit">
+          <div id="days" class="csvg-digit-number">03</div>
+          <div id="el_dw1t" class="label">days</div>
+        </div>
+      </div>
+      <div class="outside">
+        <div class="csvg-digit">
+          <div id="hours" class="csvg-digit-number">04</div>
+          <div id="el_h1t" class="label">hours</div>
+        </div>
+      </div>
+      <div class="outside">
+          <div class="csvg-digit">
+            <div id="minutes" class="csvg-digit-number">58</div>
+            <div id="el_m1t" class="label">minutes</div>
+          </div>
+      </div>
+      <div class="outside">
+        <div class="csvg-digit">
+          <div id="seconds" class="csvg-digit-number">24</div>
+          <div id="el_s1t" class="label">seconds</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    target = new Date(2023, 6, 31, 7);
+
+    function refresh() {
+      now = new Date();
+      diff = target - now;
+      // 23498573
+      // diff is milliseconds of duration
+      function r(t) {
+        return Math.round(t);
+      }
+
+      full_seconds = r(diff / 1000);
+
+      seconds = full_seconds % 60;
+      minutes = r(full_seconds / 60);
+
+      hours = r(minutes / 60);
+      minutes = minutes % 60;
+
+      days = r(hours / 24);
+      hours = hours % 24;
+
+      months = r(days / 30);
+      days = days % 30;
+
+      function format(n) {
+        if (n < 10) {
+          return "0" + n;
+        } else {
+          return "" + n;
+        }
+      }
+
+      if (months == 0) {
+        document.getElementById("months-holder").style.display = 'none';
+      } else {
+        document.getElementById("months").innerText = format(months);
+      }
+      document.getElementById("days").innerText = format(days);
+      document.getElementById("hours").innerText = format(hours);
+      document.getElementById("minutes").innerText = format(minutes);
+      document.getElementById("seconds").innerText = format(seconds);
+
+      setTimeout(refresh, 1000);
+    }
+    refresh();
+
+
+  </script>
+</body>
+
+</html>
